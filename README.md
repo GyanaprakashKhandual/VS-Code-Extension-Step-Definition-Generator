@@ -1,71 +1,278 @@
-# selenium-cucumber-step-definition-generator README
+# Selenium-Cucumber Pro Extension
 
-This is the README for your extension "selenium-cucumber-step-definition-generator". After writing up a brief description, we recommend including the following sections.
+🥒 **Professional Selenium Java step definition generator for Cucumber BDD testing**
 
-## Features
+[![Version](https://img.shields.io/visual-studio-marketplace/v/gyanaprakashkhandual.selenium-cucumber-pro)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber-pro)
+[![Downloads](https://img.shields.io/visual-studio-marketplace/d/gyanaprakashkhandual.selenium-cucumber-pro)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber-pro)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/gyanaprakashkhandual.selenium-cucumber-pro)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber-pro)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## 🚀 Features
 
-For example if there is an image subfolder under your extension project workspace:
+### ✨ Advanced Step Generation
 
-\!\[feature X\]\(images/feature-x.png\)
+- **Smart Parameter Detection**: Automatically detects quoted strings, numbers, and angle bracket parameters
+- **Professional Code Formatting**: Clean, well-structured Java code with proper indentation
+- **Complete Method Templates**: Includes try-catch blocks, documentation, and Selenium patterns
+- **Duplicate Prevention**: Intelligent duplicate step detection and unique method naming
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### 🎯 Multiple Generation Options
 
-## Requirements
+- **Selection-based Generation**: Generate from selected text or entire file
+- **Quick Actions Menu**: Easy access to all features via status bar
+- **File Creation**: Create new step definition files directly
+- **Clipboard Integration**: Automatic copying to clipboard
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### ⚙️ Extensive Configuration
 
-## Extension Settings
+- **Package & Class Names**: Customizable package and class naming
+- **Framework Support**: Cucumber, TestNG, and JUnit support
+- **Import Management**: Custom import statements
+- **Code Style Options**: Multiple formatting and naming conventions
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### 🔧 Professional Features
 
-For example:
+- **Error Handling**: Comprehensive error handling and validation
+- **Context Menu Integration**: Right-click options in feature files
+- **Keyboard Shortcuts**: Quick access via customizable shortcuts
+- **Progress Indicators**: Visual feedback during generation
 
-This extension contributes the following settings:
+## 📦 Installation
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Open VS Code
+2. Go to Extensions (`Ctrl+Shift+X`)
+3. Search for "Selenium-Cucumber Pro"
+4. Click Install
 
-## Known Issues
+## 🎮 Usage
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### Quick Start
 
-## Release Notes
+1. Open a Cucumber `.feature` file
+2. Click the "🥒 Cucumber Steps" button in the status bar
+3. Select "Generate Step Definitions"
+4. Your step definitions are copied to clipboard!
 
-Users appreciate release notes as you update your extension.
+### Available Commands
 
-### 1.0.0
+| Command                   | Shortcut       | Description                            |
+| ------------------------- | -------------- | -------------------------------------- |
+| Generate Step Definitions | `Ctrl+Shift+G` | Generate from entire file or selection |
+| Quick Actions             | `Ctrl+Shift+Q` | Open quick actions menu                |
+| Generate from Selection   | `Ctrl+Shift+S` | Generate only from selected text       |
 
-Initial release of ...
+### Context Menu Options
 
-### 1.0.1
+- Right-click in `.feature` files for quick access
+- Generate from selection when text is selected
+- Explorer context menu for feature files
 
-Fixed issue #.
+## 🔧 Configuration
 
-### 1.1.0
+Access settings via `File > Preferences > Settings` and search for "Cucumber":
 
-Added features X, Y, and Z.
+### Basic Settings
+
+```json
+{
+  "cucumberStepGen.packageName": "com.example.stepdefinitions",
+  "cucumberStepGen.className": "StepDefinitions",
+  "cucumberStepGen.framework": "cucumber"
+}
+```
+
+### Advanced Settings
+
+```json
+{
+  "cucumberStepGen.generateComments": true,
+  "cucumberStepGen.generateTryCatch": true,
+  "cucumberStepGen.methodNamingConvention": "camelCase",
+  "cucumberStepGen.autoDetectParameters": true,
+  "cucumberStepGen.outputFormat": "formatted"
+}
+```
+
+## 📝 Example Output
+
+### Input (Cucumber Feature)
+
+```gherkin
+Feature: Login functionality
+  Scenario: Successful login
+    Given I am on the login page
+    When I enter username "testuser" and password "password123"
+    Then I should see the dashboard
+```
+
+### Generated Output
+
+```java
+package com.example.stepdefinitions;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.testng.Assert;
+
+/**
+ * Cucumber Step Definitions
+ * Generated by Selenium-Cucumber Extension
+ */
+public class StepDefinitions {
+
+    private WebDriver driver;
+
+    /**
+     * Step: Given I am on the login page
+     */
+    @Given("^I am on the login page$")
+    public void iAmOnTheLoginPage() {
+        try {
+            // TODO: Implement step logic for: I am on the login page
+            // Setup/precondition logic
+            // driver.get("URL");
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to execute step", e);
+        }
+    }
+
+    /**
+     * Step: When I enter username "testuser" and password "password123"
+     * Parameters: 2
+     */
+    @When("^I enter username \"(.*?)\" and password \"(.*?)\"$")
+    public void iEnterUsernameAndPassword(String param1, String param2) {
+        try {
+            // TODO: Implement step logic
+            // Available parameters:
+            //   String param1
+            //   String param2
+
+            // Action/interaction logic
+            // WebElement inputField = driver.findElement(By.id("inputId"));
+            // inputField.sendKeys("value");
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to execute step", e);
+        }
+    }
+}
+```
+
+## 🏗️ Advanced Features
+
+### Parameter Detection
+
+The extension automatically detects:
+
+- **Quoted strings**: `"example"` → `"(.*?)"`
+- **Numbers**: `123` → `(\\d+)`
+- **Angle brackets**: `<username>` → `(.*)`
+
+### Code Templates
+
+Smart templates based on step types:
+
+- **Given steps**: Setup and precondition patterns
+- **When steps**: Action and interaction patterns
+- **Then steps**: Assertion and verification patterns
+
+### Helper Methods
+
+Generated classes include utility methods:
+
+```java
+private WebElement findElementWithWait(By locator) {
+    return wait.until(driver -> driver.findElement(locator));
+}
+
+private boolean isElementDisplayed(By locator) {
+    try {
+        return driver.findElement(locator).isDisplayed();
+    } catch (Exception e) {
+        return false;
+    }
+}
+```
+
+## 📋 Supported Step Patterns
+
+The extension recognizes these Cucumber keywords:
+
+- `Given` - Setup/preconditions
+- `When` - Actions/interactions
+- `Then` - Assertions/verifications
+- `And` - Continuation steps
+- `But` - Negative conditions
+
+## 🛠️ Code Snippets
+
+The extension includes helpful code snippets:
+
+- `given` - Generate Given step template
+- `when` - Generate When step template
+- `then` - Generate Then step template
+- `cucumberClass` - Full step definition class
+- `pageObject` - Page Object Model template
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+**No steps generated?**
+
+- Ensure steps start with `Given`, `When`, `Then`, or `And`
+- Check that the file contains valid Cucumber syntax
+
+**Invalid method names?**
+
+- The extension automatically sanitizes method names
+- Special characters are removed or converted
+
+**Configuration not working?**
+
+- Restart VS Code after changing settings
+- Check settings format matches examples
+
+### Error Messages
+
+| Message                         | Solution                            |
+| ------------------------------- | ----------------------------------- |
+| "No active editor found"        | Open a file in the editor           |
+| "No valid Cucumber steps found" | Check step syntax (Given/When/Then) |
+| "Package name must be valid"    | Use valid Java package format       |
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/blob/main/CONTRIBUTING.md).
+
+### Development Setup
+
+1. Clone the repository
+2. Run `npm install`
+3. Open in VS Code
+4. Press `F5` to launch extension development host
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Cucumber community for the amazing BDD framework
+- Selenium team for web automation tools
+- VS Code team for the excellent extension API
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/discussions)
+- **Email**: gyanaprakash@example.com
 
 ---
 
-## Following extension guidelines
+**Happy Testing! 🧪✨**
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Made with ❤️ by [Gyana Prakash Khandual](https://github.com/gyanaprakashkhandual)

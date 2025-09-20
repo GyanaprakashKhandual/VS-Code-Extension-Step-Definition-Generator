@@ -1,21 +1,254 @@
 {
   "name": "selenium-cucumber-step-definition-generator",
-  "displayName": "Selenium-Cucumber-Step-Definition-Generator",
-  "description": "This extension will generate the the stepe defintion code for selenium java from raw feature code and also can create files.",
-  "version": "0.0.1",
+  "displayName": "Selenium-Cucumber Pro",
+  "publisher": "gyanaprakashkhandual",
+  "description": "Professional Selenium Java step definition generator for Cucumber BDD testing with advanced features and code formatting",
+  "version": "1.0.0",
   "engines": {
-    "vscode": "^1.104.0"
+    "vscode": "^1.98.0",
+    "node": ">=18.0.0"
   },
   "categories": [
+    "Testing",
+    "Snippets",
     "Other"
   ],
-  "activationEvents": [],
+  "keywords": [
+    "selenium",
+    "cucumber",
+    "bdd",
+    "testing",
+    "java",
+    "step-definitions",
+    "automation",
+    "gherkin"
+  ],
+  "icon": "./icon.png",
+  "galleryBanner": {
+    "color": "#00A86B",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onLanguage:gherkin",
+    "onLanguage:feature",
+    "onCommand:cucumberStepGen.generateStep"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "selenium-cucumber-step-definition-generator.helloWorld",
-        "title": "Hello World"
+        "command": "cucumberStepGen.generateStep",
+        "title": "Generate Step Definitions",
+        "category": "Cucumber",
+        "icon": "$(code)"
+      },
+      {
+        "command": "cucumberStepGen.generateFromSelection",
+        "title": "Generate Step Definitions from Selection",
+        "category": "Cucumber",
+        "icon": "$(selection)"
+      },
+      {
+        "command": "cucumberStepGen.createStepFile",
+        "title": "Create Step Definition File",
+        "category": "Cucumber",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "cucumberStepGen.configure",
+        "title": "Configure Settings",
+        "category": "Cucumber",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "cucumberStepGen.quickActions",
+        "title": "Cucumber Quick Actions",
+        "category": "Cucumber",
+        "icon": "$(list-selection)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .feature",
+          "command": "cucumberStepGen.generateStep",
+          "group": "cucumber@1"
+        },
+        {
+          "when": "resourceExtname == .feature && editorHasSelection",
+          "command": "cucumberStepGen.generateFromSelection",
+          "group": "cucumber@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .feature",
+          "command": "cucumberStepGen.generateStep",
+          "group": "cucumber@1"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourceExtname == .feature",
+          "command": "cucumberStepGen.generateStep",
+          "group": "navigation@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "cucumberStepGen.generateStep",
+          "when": "true"
+        },
+        {
+          "command": "cucumberStepGen.generateFromSelection",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "cucumberStepGen.createStepFile",
+          "when": "true"
+        },
+        {
+          "command": "cucumberStepGen.configure",
+          "when": "true"
+        },
+        {
+          "command": "cucumberStepGen.quickActions",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Selenium-Cucumber Pro",
+      "properties": {
+        "cucumberStepGen.packageName": {
+          "type": "string",
+          "default": "com.example.stepdefinitions",
+          "description": "Default package name for generated step definition classes",
+          "pattern": "^[a-z][a-z0-9_]*(?:\\.[a-z][a-z0-9_]*)*$",
+          "patternErrorMessage": "Package name must be valid Java package format (e.g., com.example.stepdefinitions)"
+        },
+        "cucumberStepGen.className": {
+          "type": "string",
+          "default": "StepDefinitions",
+          "description": "Default class name for generated step definitions",
+          "pattern": "^[A-Z][a-zA-Z0-9_]*$",
+          "patternErrorMessage": "Class name must be valid Java class format (PascalCase)"
+        },
+        "cucumberStepGen.baseTestClass": {
+          "type": "string",
+          "default": "",
+          "description": "Base test class to extend (optional)",
+          "pattern": "^[A-Z][a-zA-Z0-9_]*$|^$",
+          "patternErrorMessage": "Base class name must be valid Java class format or empty"
+        },
+        "cucumberStepGen.imports": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional imports to include in generated step definition files"
+        },
+        "cucumberStepGen.framework": {
+          "type": "string",
+          "default": "cucumber",
+          "enum": [
+            "cucumber",
+            "testng",
+            "junit"
+          ],
+          "description": "Testing framework to use for step definitions"
+        },
+        "cucumberStepGen.generateComments": {
+          "type": "boolean",
+          "default": true,
+          "description": "Generate detailed comments and documentation in step definitions"
+        },
+        "cucumberStepGen.generateTryCatch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Wrap step implementations in try-catch blocks"
+        },
+        "cucumberStepGen.generateHelperMethods": {
+          "type": "boolean",
+          "default": true,
+          "description": "Generate helper methods in step definition classes"
+        },
+        "cucumberStepGen.methodNamingConvention": {
+          "type": "string",
+          "default": "camelCase",
+          "enum": [
+            "camelCase",
+            "snake_case",
+            "PascalCase"
+          ],
+          "description": "Naming convention for generated method names"
+        },
+        "cucumberStepGen.includePageObjectPattern": {
+          "type": "boolean",
+          "default": false,
+          "description": "Generate code following Page Object Model pattern"
+        },
+        "cucumberStepGen.autoDetectParameters": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically detect and parameterize quoted strings and numbers in steps"
+        },
+        "cucumberStepGen.validateSteps": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate Cucumber step syntax before generation"
+        },
+        "cucumberStepGen.outputFormat": {
+          "type": "string",
+          "default": "formatted",
+          "enum": [
+            "formatted",
+            "compact",
+            "minimal"
+          ],
+          "description": "Output format style for generated code"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "cucumberStepGen.generateStep",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "cucumberStepGen.quickActions",
+        "key": "ctrl+shift+q",
+        "mac": "cmd+shift+q",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "cucumberStepGen.generateFromSelection",
+        "key": "ctrl+shift+s",
+        "mac": "cmd+shift+s",
+        "when": "editorHasSelection"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "java",
+        "path": "./snippets/cucumber-snippets.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "gherkin",
+        "aliases": [
+          "Gherkin",
+          "gherkin",
+          "Cucumber",
+          "cucumber"
+        ],
+        "extensions": [
+          ".feature"
+        ]
       }
     ]
   },
@@ -30,20 +263,59 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "check-types": "tsc --noEmit",
-    "lint": "eslint src",
-    "test": "vscode-test"
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
+    "test:unit": "npm run compile-tests && node ./out/test/runTest.js",
+    "coverage": "nyc npm run test:unit",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator"
+  },
+  "bugs": {
+    "url": "https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/issues"
+  },
+  "homepage": "https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator#readme",
+  "license": "MIT",
+  "author": {
+    "name": "Gyana Prakash Khandual",
+    "email": "gyanaprakashkhnadual@gmail.com"
   },
   "devDependencies": {
-    "@types/vscode": "^1.104.0",
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.98.0",
     "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "@typescript-eslint/eslint-plugin": "^8.42.0",
-    "@typescript-eslint/parser": "^8.42.0",
-    "eslint": "^9.34.0",
-    "esbuild": "^0.25.9",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "esbuild": "^0.25.0",
     "npm-run-all": "^4.1.5",
-    "typescript": "^5.9.2",
-    "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2"
-  }
+    "typescript": "^5.7.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "prettier": "^3.0.0"
+  },
+  "extensionDependencies": [],
+  "capabilities": {
+    "virtualWorkspaces": {
+      "supported": true
+    },
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "qna": "marketplace",
+  "badges": [
+    {
+      "url": "https://img.shields.io/badge/PRs-welcome-brightgreen.svg",
+      "href": "https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/blob/main/CONTRIBUTING.md",
+      "description": "PRs Welcome"
+    }
+  ]
 }
