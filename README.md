@@ -1,28 +1,28 @@
 # Selenium-Cucumber Pro Extension
 
-🥒 **Professional Selenium Java step definition generator for Cucumber BDD testing**
+**Professional Selenium Java step definition generator for Cucumber BDD testing**
 
-[![Version](https://img.shields.io/visual-studio-marketplace/v/gyanaprakashkhandual.selenium-cucumber-pro)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber-pro)
-[![Downloads](https://img.shields.io/visual-studio-marketplace/d/gyanaprakashkhandual.selenium-cucumber-pro)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber-pro)
-[![Rating](https://img.shields.io/visual-studio-marketplace/r/gyanaprakashkhandual.selenium-cucumber-pro)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber-pro)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/gyanaprakashkhandual.selenium-cucumber)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber)
+[![Downloads](https://img.shields.io/visual-studio-marketplace/d/gyanaprakashkhandual.selenium-cucumber)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/gyanaprakashkhandual.selenium-cucumber)](https://marketplace.visualstudio.com/items?itemName=gyanaprakashkhandual.selenium-cucumber)
 
-## 🚀 Features
+## Features
 
-### ✨ Advanced Step Generation
+###  Advanced Step Generation
 
 - **Smart Parameter Detection**: Automatically detects quoted strings, numbers, and angle bracket parameters
 - **Professional Code Formatting**: Clean, well-structured Java code with proper indentation
 - **Complete Method Templates**: Includes try-catch blocks, documentation, and Selenium patterns
 - **Duplicate Prevention**: Intelligent duplicate step detection and unique method naming
 
-### 🎯 Multiple Generation Options
+###  Multiple Generation Options
 
 - **Selection-based Generation**: Generate from selected text or entire file
 - **Quick Actions Menu**: Easy access to all features via status bar
 - **File Creation**: Create new step definition files directly
 - **Clipboard Integration**: Automatic copying to clipboard
 
-### ⚙️ Extensive Configuration
+###  Extensive Configuration
 
 - **Package & Class Names**: Customizable package and class naming
 - **Framework Support**: Cucumber, TestNG, and JUnit support
@@ -92,7 +92,7 @@ Access settings via `File > Preferences > Settings` and search for "Cucumber":
 }
 ```
 
-## 📝 Example Output
+##  Example Output
 
 ### Input (Cucumber Feature)
 
@@ -161,7 +161,7 @@ public class StepDefinitions {
 }
 ```
 
-## 🏗️ Advanced Features
+## Advanced Features
 
 ### Parameter Detection
 
@@ -197,7 +197,7 @@ private boolean isElementDisplayed(By locator) {
 }
 ```
 
-## 📋 Supported Step Patterns
+## Supported Step Patterns
 
 The extension recognizes these Cucumber keywords:
 
@@ -207,7 +207,7 @@ The extension recognizes these Cucumber keywords:
 - `And` - Continuation steps
 - `But` - Negative conditions
 
-## 🛠️ Code Snippets
+## Code Snippets
 
 The extension includes helpful code snippets:
 
@@ -217,7 +217,7 @@ The extension includes helpful code snippets:
 - `cucumberClass` - Full step definition class
 - `pageObject` - Page Object Model template
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -244,7 +244,7 @@ The extension includes helpful code snippets:
 | "No valid Cucumber steps found" | Check step syntax (Given/When/Then) |
 | "Package name must be valid"    | Use valid Java package format       |
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/blob/main/CONTRIBUTING.md).
 
@@ -255,24 +255,24 @@ We welcome contributions! Please see our [Contributing Guide](https://github.com
 3. Open in VS Code
 4. Press `F5` to launch extension development host
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Cucumber community for the amazing BDD framework
 - Selenium team for web automation tools
 - VS Code team for the excellent extension API
 
-## 📞 Support
+##  Support
 
 - **Issues**: [GitHub Issues](https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/GyanaprakashKhandual/VS-Code-Extension-Step-Definition-Generator/discussions)
-- **Email**: gyanaprakash@example.com
+- **Email**: gyanaprakashkhnadual@gmail.com
 
 ---
 
 **Happy Testing! 🧪✨**
 
-Made with ❤️ by [Gyana Prakash Khandual](https://github.com/gyanaprakashkhandual)
+Made with ❤️ by [Gyana Prakash Khandual](https://github.com/GyanaprakashKhandual)

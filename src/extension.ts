@@ -120,7 +120,7 @@ async function generateStepDefinitions(selectionOnly = false) {
   try {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
-      vscode.window.showErrorMessage("❌ No active editor found. Please open a Cucumber feature file.");
+      vscode.window.showErrorMessage(" No active editor found. Please open a Cucumber feature file.");
       return;
     }
 
@@ -129,7 +129,7 @@ async function generateStepDefinitions(selectionOnly = false) {
     // Validate file type
     if (!isValidCucumberFile(document)) {
       const proceed = await vscode.window.showWarningMessage(
-        "⚠️ This doesn't appear to be a Cucumber feature file. Continue anyway?",
+        "This doesn't appear to be a Cucumber feature file. Continue anyway?",
         "Yes", "No"
       );
       if (proceed !== "Yes") { return; }
@@ -186,7 +186,7 @@ async function generateStepDefinitions(selectionOnly = false) {
 
       // Show success message with options
       const action = await vscode.window.showInformationMessage(
-        `✅ Generated ${validSteps.length} step definition(s)${selectionInfo} and copied to clipboard!`,
+        `Generated ${validSteps.length} step definition(s)${selectionInfo} and copied to clipboard!`,
         "Create File", "View Output", "Configure"
       );
 
@@ -603,7 +603,7 @@ async function showConfigurationDialog() {
   await vsConfig.update('className', className, vscode.ConfigurationTarget.Global);
   await vsConfig.update('baseTestClass', baseClass || '', vscode.ConfigurationTarget.Global);
 
-  vscode.window.showInformationMessage('✅ Configuration updated successfully!');
+  vscode.window.showInformationMessage('Configuration updated successfully!');
 }
 
 async function createStepDefinitionFile(content?: string) {
@@ -632,9 +632,9 @@ async function createStepDefinitionFile(content?: string) {
     await vscode.workspace.fs.writeFile(uri, Buffer.from(content));
     const document = await vscode.workspace.openTextDocument(uri);
     await vscode.window.showTextDocument(document);
-    vscode.window.showInformationMessage(`✅ Step definition file created: ${fileName}`);
+    vscode.window.showInformationMessage(`Step definition file created: ${fileName}`);
   } catch (error) {
-    vscode.window.showErrorMessage(`❌ Failed to create file: ${error}`);
+    vscode.window.showErrorMessage(`Failed to create file: ${error}`);
   }
 }
 
@@ -663,7 +663,7 @@ async function showOutputPreview(content: string) {
 
 async function showAboutDialog() {
   const message = `
-🥒 Selenium-Cucumber Extension
+ Selenium-Cucumber Extension
 
 Version: 1.0.0
 Author: Gyana Prakash Khandual
